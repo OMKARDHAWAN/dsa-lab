@@ -326,4 +326,51 @@ System.out.println(" ");
 		System.out.println("-----------------------------");	  
 	    System.out.println(Arrays.toString(arr));
   }
+  
+  public static void HeapSort(int[] arr) {
+		 
+		 int n = arr.length;
+		 //convert tree into max heap
+		 for(int i = (n /2) - 1 ; i >= 0 ; i--) {
+			 heapify(arr,n,i);
+		 }
+		 
+		 //sort max element with first element
+		 for(int i= n-1 ; i >= 0 ;i--) {
+			 int temp = arr[i];
+			 arr[i] =arr[0];
+			 arr[0] = temp;
+			 heapify(arr, i, 0);
+		 }
+		 
+		 
+		 
+	 }
+	 public static void heapify(int[] arr,int n,int i){
+		 
+		 int left = 2 * i + 1;
+		 int right = 2 * i + 2;
+		 int largest = i;
+		 
+		 while((left < n ) && arr[left] > arr[largest]) {
+			largest = left;
+		 }
+		 
+		 
+		 while((right < n ) && arr[right] > arr[largest]) {
+				largest = right;
+		 }
+		 
+		 if(largest != i) {
+			 int temp = arr[i];
+			 arr[i] = arr[largest];
+			 arr[largest] = temp;
+			 heapify(arr, n, largest);
+		 }
+		 
+		 System.out.println(Arrays.toString(arr));
+		 System.out.println("----------------------");
+	 }
+  
+  
 }
