@@ -3,163 +3,166 @@ package com.demo.model;
 import java.util.Arrays;
 
 public class MyArray {
-  private int[] array;
+  private int[] arr;
   private int count;
-
-  
-  
-  
-  //default constructor;
- public MyArray() {
-	this.array = new int[10];
-	this.count = 0;
- }
-
  
-// paramterised constructor
- public MyArray(int size){
-  this.array = new int[size];
-  this.count = 0;
- }
- 
-
-
- 
- 
-public MyArray(int[] array, int count) {
-	this.array = array;
+  public MyArray() {
+	arr = new int[5];
+	count = 0;
+  }
+  public MyArray(int size, int count) {
+	this.arr = new int[size];
 	this.count = count;
-	
-}
-
-//addition of array
-public boolean add(int val){
-	if(count < array.length){
-		array[count] = val;
-	    count++;
-		return true;
-	}
-	return false;
-}
-
-
-public boolean addByPos(int pos,int val){
-	
-//	check whether count is less than array length and pos is less than count
-	if((count < array.length)&&(pos < count)) {
-		for(int i = count ; i >= pos ; i--) {
-			array[count] = array[count - 1];
-		}
-		array[pos] = val;
-		count++;
-		return true;
-	}
-	
-	
-	
-	return false;
-
-}
-
-//search by index;
-
-public int searchByPos(int val){
-	for(int i = 0 ; i < count - 1 ; i++) {
-	  if(array[i] == val) {
-		  return i;
+  }
+  
+  //retrive array length 
+  public int getCapacity() {
+	return arr.length;
+  }
+  
+  //retrive no of elements in array  
+  public int getCount() {
+	return count;
+  }
+  
+  
+//  insert at end
+  public void add(int x) {
+	  if(count < arr.length) {
+		  arr[count] = x;
+		  count++;
+		  System.out.println("Element added successfully!!!");
+	  }else {
+		  System.out.println("Array length is full");
 	  }
-	}	
-	return -1;
-}
-
-
-//deleteBypos
-
-public boolean deleteByPos(int pos){
-	if(pos < count){
-	  for(int i = pos + 1 ; i < count ; i++) {
-		  array[i - 1] = array[i];
+  }
+  
+  public void display() {
+	  for(int i = 0 ; i < count ; i++) {
+		 System.out.println("Array Element :" + arr[i]);
 	  }
-	  count--;
+  }
+  public boolean addBetween(int x,int pos){
+	// TODO Auto-generated method stub
+	  count=3;
+	  if((count < arr.length) && (pos<count)) {
+	  
+	  for(int i = count ; i > pos ; i--) {
+		  arr[i] = arr[i-1];
+	  }
+	  arr[pos] = x;
+	  count++;
 	  return true;
+	  }else {
+		  return false;
+	  }
+  }
+  public int searchByPos(int pos) {
+	// TODO Auto-generated method stub
+	  
+	  for(int i = 0 ; i < arr.length ; i++ ) {
+		  if(i == pos) {
+			 return arr[i];
+		  }
+	  }
+	  
+	return -1;
+  }
+  public boolean deleteByPos(int pos) {
+	// TODO Auto-generated method stub
+	  if(pos < count) {
+		  for(int i = 0 ; i < count ; i++) {
+			  if(i == pos) {
+				arr[i] = arr[i+1];
+			  }
+		  }
+		  count--;
+		  return true;
+	  }
+	  
+	  
+	return false;
+  }
+  public boolean searchByValue(int value) {
+	// TODO Auto-generated method stub
+	  
+	for(int i = 0 ; i < arr.length; i++) {
+		if(arr[i] == value) {
+			return true;
+		}
 	}
 	return false;
-}
-//
-public boolean deleteByVal(int val){
-	int pos = searchByPos(val);
-	
-	if(pos != -1) {
-		
-		for(int i = pos +1 ; i < count ; i++) {
-			array[i - 1] = array[i];
+  }
+  
+  public int[] rotatebyRight( int pos) {
+	// TODO Auto-generated method stub
+	  int temp = 0;
+	  
+		for(int i = 0 ; i < pos; i++) {
+			  temp = arr[count-1];
+			  for(int j = count - 1 ; j > 0 ; j--){
+				  arr[j] = arr[j-1];
+			  }
+			  arr[0]=temp;
 		}
-		count--;
-		return true;
-	}else {
-		return false;		
+	
+	  
+	  return arr;
+  }
+
+  
+  public int[] rotatebyLeft( int pos) {
+		// TODO Auto-generated method stub
+		  int temp = 0;
+		for(int i = 0 ; i < pos; i++) {
+			  temp = arr[0];
+			  for(int j = 0; j < count -1 ; j++){
+				  arr[j] = arr[j+1];
+			  }
+			  arr[count - 1] = temp;
+		} 		  	  
+		  return arr;
+	  }
+  
+  
+  
+  
+  public int findMax() {
+	// TODO Auto-generated method stub
+	int max = arr[0];  
+	  
+	for(int i = 1 ; i < arr.length ; i++ ) {
+		if(max < arr[i]) {
+			max = arr[i];
+		}
 	}
 	
-	
-}
+	return max;
 
-public void rotateArray(boolean flag , int num) {
-	
-	if(flag) {
-		for(int i = 0 ; i < num ; i++) {
-			int temp = array[count -1];
-		for(int j = count - 1 ; j > 0 ; j--) {
-		  	array[j] = array[j-1];
+  }
+  public int findMin() {
+	// TODO Auto-generated method stub
+	  int min = arr[0];  
+	  
+		for(int i = 1 ; i < arr.length ; i++ ) {
+			if(min > arr[i]) {
+				min = arr[i];
+			}
 		}
-		array[0] = temp;
+		return min;
+  }
+  
+  public int totalSum() {
+	  int sum = 0;
+	  for(int i = 0 ; i < arr.length ; i++ ) {
+			sum +=arr[i];
 		}
-		
-	}else {
-		for(int i = 0 ; i < num ; i++) {
-			int temp = array[0];
-		for(int j = 0 ; j < count -1 ; j++) {
-		  	array[j] = array[j+1];
-		}
-		array[count-1] = temp;
-		}
-		
-	}
-	
-}
-
-public void reverseArray(boolean flag) {
-	
-	if(flag){
-		for(int i = 0,j = count - 1 ; i < j ; i++ , j--){
-
-				int temp = array[i];
-				array[i] = array[j];
-				array[j] = temp;
-
-		}
-	}else {
-		
-		int[] arr1 = new int[count];
-		
-		for(int i = count - 1,j = 0 ; i >= j ; i-- , j++){
-			
-				arr1[j] = array[i];
-			
-		}
-	}
-}
-
-public void display() {
-	for(int i = 0 ;i < count; i ++) {
-		System.out.print(array[i] + "\t");
-	}
-}
-
-
-
-
-
-
-
+		return sum;
+  }
+  
+ 
+  
+  
+  
   
 }

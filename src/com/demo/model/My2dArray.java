@@ -1,158 +1,205 @@
 package com.demo.model;
 
+
 import java.util.Scanner;
 
 public class My2dArray {
-  private int[][] Array;
+  int [][] matrix;
   Scanner sc = new Scanner(System.in);
-  
   public My2dArray() {
-      Array = new int[3][3];
+	// TODO Auto-generated constructor stub
+	  matrix = new int[3][3];
   }
   
-  public My2dArray(int[][] array) {
-	Array = array;
+  public int getLength(){
+	  int length = matrix.length;	  
+	  return length;
   }
   
-  public My2dArray(int[][] array,int row ,int col) {
-		Array = new int[row][col];
-	    Array = array;
-  }
-  
-  public void add(){
-	  System.out.println("Enter the element in array :");
-	  for(int row = 0 ; row < Array.length ; row++) {
-		  for(int col = 0 ; col < Array[0].length ; col++) {
-			 Array[row][col] = sc.nextInt();
+  public void addElement(){
+	  for(int i = 0 ; i < matrix.length ; i++) {
+		  for(int j = 0 ; j < matrix.length ; j++ ) {
+			  System.out.println("Enter Element at :" + i + " " + j);
+			  matrix[i][j] = sc.nextInt();
 		  }
 	  }
-	  System.out.println(" ");
+	  
   }
   
-  
-  public void addByCol(){
-	  System.out.println("Enter the element in array :");
-		  for(int col = 0 ; col < Array[0].length ; col++) {
-			  for(int row = 0 ; row < Array.length ; row++) {
-			 Array[row][col] = sc.nextInt();
-		  }
-	  }
-	  System.out.println(" ");
-  }
-
-  
-  public void shiftByRow(boolean flag,int num){
-	 
-	       
-	       
-if(flag) {
-	for(int i = 0 ; i < num ; i ++) {
-		int temp[] = Array[0];
-		for(int j = 0 ; j < Array.length - 1; j ++) {
-			Array[j] = Array[j + 1 ];
-		}
-		Array[Array.length - 1 ] = temp;
-		
-	}
-}else {
-	for(int i = 0 ; i < num ; i ++) {
-		int temp[]  = Array[Array.length - 1 ];
-		for(int col = Array.length - 1 ; col >0 ; col --) {
-			Array[col] = Array[col - 1 ];
-		}
-		Array[0] = temp;
-		
-	}
-}
-	       
-	       
-		
-  }
-  
-  
-  public void rotateByCol(boolean flag , int num) {
-if(flag){
-	int[] temp = new int[Array.length];
-	//save last col into temp array;
-	
-	for(int it = 0 ; it < num ; it ++) {
-		for(int i = 0 ; i < temp.length ; i ++){
-			temp[i] = Array[i][Array.length - 1];
-		}
-		
-	    //shift remaning two col	
-		for(int col = 0 ; col < Array.length ; col++){
-			for(int row = Array.length - 1 ; row > 0 ; row-- ) {
-				Array[col][row] = Array[col][row - 1];
-			}
-		}
-		
-		//save col which is save in temp variable at index 0;
-		for(int i = 0 ; i < temp.length ; i ++){
-			Array[i][0] = temp[i];
-		}
-	}
-	
-}else {
-	
-	//save last col into temp array;
-	int[] temp = new int[Array.length];
-	for(int it = 0 ; it < num ; it ++) {
-		for(int i = 0 ; i < temp.length ; i ++){
-			temp[i] = Array[i][0];
-		}
-		
-	    //shift remaning two col	
-		for(int col = 0 ; col < Array.length ; col++){
-			for(int row = 0; row < Array.length - 1 ; row++) {
-				Array[col][row] = Array[col][row + 1];
-			}
-		}
-		
-		//save col which is save in temp variable at index 0;
-		for(int i = 0 ; i < temp.length ; i ++){
-			Array[i][2] = temp[i];
-		}
-	}
-}
-  }
-  
-  
-public void sumByRow(){
-	int sum[] = new int[Array.length];
-	
-	
-	for(int row = 0 ; row < Array.length ; row++){
-		for(int col = 0 ; col < Array[0].length ; col++ ){
-			sum[row] += Array[row][col];
-		}
-	}
-	
-	for(int row = 0 ; row < Array.length ; row++){
-		System.out.println("Sum by row : " + sum[row]);		
-	}
-	
-	
-}
-  
-  
-  
-  
-  
-  
-public void display() {
-	System.out.println("Array : ");
-	  for(int row = 0 ; row < Array.length ; row++) {
-		  for(int col = 0 ; col < Array[0].length ; col++) {
-	 System.out.print(Array[row][col] + "\t");
+  public void displayElementRowwise(){
+	  for(int i = 0 ; i < matrix.length ; i++) {
+		  for(int j = 0 ; j < matrix[0].length ; j++ ) {
+			  System.out.print(matrix[i][j] + " ");
 		  }
 		  System.out.println(" ");
+	  } 
+  }
+
+  public int[][] rotateUpward(int pos) {
+	// TODO Auto-generated method stub
+   int [] temp = new int[3];
+     for(int i = 0 ; i < pos ; i++) {
+         temp = matrix[0];
+   	    for(int j = 0 ; j < matrix.length - 1; j++) {
+   	        matrix[j] = matrix[j + 1];
+    	  }
+   	    matrix[matrix.length - 1] = temp;
+     }
+	return matrix;
+  }
+  
+  public int[][] rotateDownward(int pos){
+	// TODO Auto-generated method stub
+   int [] temp = new int[3];
+     for(int i = 0 ; i < pos ; i++) {
+         temp = matrix[matrix.length - 1];
+   	    for(int j = matrix.length - 1  ; j > 0 ; j--){
+   	        matrix[j] = matrix[j - 1];
+    	  }
+   	    matrix[0] = temp;
+     }
+	return matrix;
+  }
+
+  public int[] findMaxByRow() {
+	// TODO Auto-generated method stub
+	  int max[] = new int[3];
+	  
+	  for(int i = 0 ; i < matrix.length; i++) {
+		  for(int j = 0 ; j < matrix[0].length ;j++) {
+			  max[i] = matrix[i][0];
+			  if(max[i] < matrix[i][j]) {
+				  max[i]=matrix[i][j];
+			  }
+		  }
 	  }
-}
+	  return max;	  
+  }
+  
+  
+  public int[] findMinByRow(){
+		// TODO Auto-generated method stub
+		  int min[] = new int[3];
+		  
+		  for(int i = 0 ; i < matrix.length; i++) {
+			  for(int j = 0 ; j < matrix[0].length ;j++) {
+				  min[i] = matrix[i][0];
+				  if(min[i] > matrix[i][j]) {
+					  min[i]=matrix[i][j];
+				  }
+			  }
+		  }
+		  return min;	  
+   }
+
+  public int[] findSumByRow() {
+	// TODO Auto-generated method stub
+	  
+	  int sum[] = new int[3];
+	  
+	  for(int i = 0 ; i < matrix.length; i++) {
+		  for(int j = 0 ; j < matrix[0].length ;j++) {
+			  sum[i] += matrix[i][j];
+		  }
+	  }
+	  return sum;	 	  
+  }
+
+  public void addElementColumnWise() {
+	// TODO Auto-generated method stub
+	  System.out.println("Enter element  :");
+	  int element = sc.nextInt();
+	  for(int i = 0 ; i < matrix[0].length ; i++) {
+		  for(int j = 0 ; j < matrix.length ; j++ ) {
+			  System.out.println("Enter Element at :" + j + " " + i);
+			  matrix[i][j] = sc.nextInt();
+		  }
+	  }
+	
+  }
+  
+  public void displayElementColumnWise(){
+	  for(int i = 0 ; i < matrix[0].length ; i++) {
+		  for(int j = 0 ; j < matrix.length ; j++ ) {
+			  System.out.print(matrix[j][i] + " ");
+		  }
+		  System.out.println(" ");
+	  } 
+  }
+  
+  public int[] findMaxByColumn() {
+		// TODO Auto-generated method stub
+		  int max[] = new int[3];
+		  
+		  for(int i = 0 ; i < matrix[0].length; i++) {
+			  for(int j = 0 ; j < matrix.length ;j++) {
+				  max[i] = matrix[0][i];
+				  if(max[i] < matrix[i][j]) {
+					  max[i]=matrix[i][j];
+				  }
+			  }
+		  }
+		  return max;	  
+	  }
+  
+  public int[] findMinByColumn() {
+		// TODO Auto-generated method stub
+		  int min[] = new int[3];
+		  
+		  for(int i = 0 ; i < matrix[0].length; i++) {
+			  for(int j = 0 ; j < matrix.length ;j++) {
+				  min[i] = matrix[0][i];
+				  if(min[i] > matrix[i][j]) {
+					  min[i]=matrix[i][j];
+				  }
+			  }
+		  }
+		  return min;	  
+	  }
+
+  public int[] findSumByColumnwise() {
+	// TODO Auto-generated method stub
+	  
+	  int sum[] = new int[3];
+	  
+	  for(int i = 0 ; i < matrix[0].length; i++) {
+		  for(int j = 0 ; j < matrix.length ;j++) {
+			  sum[i] += matrix[i][j];
+		  }
+	  }
+	  return sum;
+  }
+
+  public int[][] rotateRightColumnWise(int count) {
+	// TODO Auto-generated method stub
+     int temp[] = new int[3]; 
+	 for(int i = 0 ; i < count ; i++) {
+	  for(int j = 0 ; j < matrix[0].length ; j++) {
+		  for(int k = 0 ; k < matrix.length ; k++) {
+			  temp[i] = matrix[j][k];
+			  matrix[j][k] = matrix[j+1][k+1];
+			  matrix[matrix[0].length - 1][matrix[0].length - 1] = temp[i];
+	  }
+	 }
+	  
+  }
+	 return matrix;
+
+  
+
+  }
+  
+	 
+//Addition of two matrix 
+int[][] matrix1 = new int[3][3];	 
+int[][] matrix2 = new int[3][3];	
  
   
   
   
   
   
-}
+  
+  
+  
+  }
