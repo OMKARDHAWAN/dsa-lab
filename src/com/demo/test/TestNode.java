@@ -10,6 +10,15 @@ public class TestNode {
 	list.addNode(20);
 	list.addNode(30);
 	list.displayList();
-	
+	list.addAtPos(50, 1);
+	list.displayList();
+	list.addAtPos(60, 3);
+	list.displayList();
+	list.addAtNum(80,10);
+	list.displayList();
+	list.deleteByVal(60);
+	list.displayList();
+	list.deleteByPos(2);
+	list.displayList();
 }
 }

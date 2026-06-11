@@ -43,6 +43,73 @@ public class SinglyLinkedList {
   }
   
   
+  public void addAtPos(int val ,int pos){
+	  Node newNode = new Node(val);
+	  if(pos == 1){
+		  newNode.next = head;
+		  head = newNode;
+	  }else {
+		  Node temp = head;
+          for(int i = 1 ; temp != null && i <=pos-2 ;i++) {
+        	     temp = temp.next;
+          }
+          if(temp != null){
+        	   newNode.next = temp.next;
+        	   temp.next = newNode;
+          }else {
+  			System.out.println("Cannot add position is out of scope");
+  		}  
+	  }
+  }
+  
+  
+  public void addAtNum(int val,int num) {
+	  if(head == null) {
+		 System.out.println("List is empty");
+	  }else {
+		  Node temp= head;
+		  Node newNode = new Node(val);
+		  
+		  while(temp != null && temp.data != num){
+			 temp = temp.next; 
+		  }
+		  
+		  if(temp != null) {
+			  newNode.next = temp.next;
+			  temp.next = newNode;
+		  }else {
+			  System.out.println(num + "not found");
+		  }
+		  
+	  }
+  }
+  
+  
+  public void deleteByVal(int val){
+	  Node temp = head;
+	  //value at first pos
+	  if(head.data == val){
+		  head = head.next;
+		  temp.next = null;
+	  }else{
+		  Node prev = null;
+		  while(temp != null && temp.data != val) {
+			  prev = temp;
+			  temp = temp.next;
+		  }
+		  
+		  if(temp != null) {
+			  prev.next = temp.next;
+			  temp.next = null;  
+		  }else {
+			  System.out.println(val+" not found");
+		  }
+	  }
+  }
+  
+  
+  
+  
   public void displayList(){
 	  if(head == null) {
 		  System.out.println("List is Empty!!!");
@@ -52,6 +119,38 @@ public class SinglyLinkedList {
    }
    System.out.println("null");
 	  }
+  }
+
+
+  public void deleteByPos(int pos) {
+	// TODO Auto-generated method stub
+	
+	  Node temp = head;
+	  
+	  if(head == null){
+		  System.out.println("list is empty");
+	  }else {
+		  if(pos == 1){
+			  head = head.next;
+			  temp.next = null;
+		  }else {
+			  Node prev = null; 
+			  for(int i = 1 ; temp != null && i <= pos - 1 ; i++) {
+				  prev = temp;
+				  temp = temp.next;
+			  }
+			  
+			  if(temp != null) {
+				  prev.next = temp.next;
+				  temp.next = null;
+			  }else {
+				  System.out.println("Not found!!");
+			  }
+			  
+		  }
+	  }
+	  
+	  
   }
   
   

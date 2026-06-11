@@ -15,7 +15,7 @@ public class Test2DArray {
 	 do { 
 		 System.out.println("1.Add Element in matrix row wise \n 2.Sum of element rowwise \n 3.Find max element rowwise\n 4.Find minimum element rowwise \n 5.Shift Matrix upside \n 6.Shift Matrix downside");
 		 System.out.println("7.Add Element in matrix column wise \n 8.Sum of element columnwise \n 9.Find max element columnwise\n 10.Find minimum element columnwise \n 11.Shift Matrix right \n 12.Shift Matrix left");
-		 System.out.println("13.Display Matrix rowwise \n 14.Display Matrix Columnwise \n");
+		 System.out.println("12.Display Matrix rowwise \n 13.Display Matrix Columnwise \n");
 		 System.out.println("Enter Correct choice :");
 		 choice = sc.nextInt();
          switch (choice) {

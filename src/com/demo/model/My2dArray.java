@@ -189,11 +189,9 @@ public class My2dArray {
 
   }
   
-	 
-//Addition of two matrix 
-int[][] matrix1 = new int[3][3];	 
-int[][] matrix2 = new int[3][3];	
+
  
+
   
   
   
