@@ -180,5 +180,20 @@ public void deleteByNum(int val){
 	}
 }
 
+public void DisplayReverse(){
+	if(head == null) {
+		System.out.println("List is Empty!!!");
+	}else{
+       Node temp = head;
+       while(temp.next !=null) {
+    	   temp = temp.next;
+       }
+       for(;temp!=null;temp=temp.prev) {
+			System.out.print(temp.data+"--->");
+		}
+       System.out.println("null");
+	}
+}
+
 
 }

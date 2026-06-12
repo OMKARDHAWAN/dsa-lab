@@ -16,5 +16,6 @@ public class TestDoublyLinkedList {
 	list.displaList();
 	list.deleteByNum(150);
 	list.displaList();
+	list.DisplayReverse();
 }
 }
