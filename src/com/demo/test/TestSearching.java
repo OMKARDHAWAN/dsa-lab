@@ -6,6 +6,15 @@ public class TestSearching {
   public static void main(String[] args) {
 	SearchTech S = new SearchTech();
 	int[] arr = {10,20,30,40,50,60};
+	
+//	int pos = S.sequentialSearch(arr, 60);
+//	if(pos != -1 ) {
+//		System.out.println("Element found at :" + pos);
+//	}else {
+//		System.out.println("Element not found!!!");
+//	}
+	
+	
 //	int pos = S.binarySearchNonRecurssive(arr, 60);
 //	if(pos != -1 ) {
 //		System.out.println("Element found at :" + pos);
