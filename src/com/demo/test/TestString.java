@@ -1,5 +1,6 @@
 package com.demo.test;
 
+import java.nio.charset.CharacterCodingException;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -24,47 +25,28 @@ public class TestString {
 	  
 	  return false;
   }
+  
   public static void main(String[] args) {
-	String name = "Hello world!!";
-	
-	//  string reversing 
-    //	string letter counting
-	
-//	String word = "madamadam";
-//	int start = 0;
-//	int end = word.length();
+//      hashmap
 //	
-//	
-//	boolean palindrome = Ispalindrome(word);
-//	if(palindrome) {
-//		System.out.println("Palindrome!!!");
-//	}else {
-//		System.out.println("Not palindrome");
-//	}
-//	
-//	
+	String word = "john";
 	
+	HashMap<Character , Integer> map = new HashMap<>();
 	
-//	word reverse
-	String sentence  = "Hello This is Omkar Dhawan";
-	
-	String[] array = sentence.split(" ");
-	
-	StringBuilder st = new StringBuilder();
-	
-	for(int i = array.length - 1 ; i >= 0 ; i--){
-		System.out.print(array[i]);
-	}
-//	
-	String str = "Hello World Java";
-
-    String[] words = str.split(" ");
-
-    for (int i = words.length - 1; i >= 0; i--) {
-        System.out.print(words[i] + " ");
+    for(Character ch : word.toCharArray() ) {
+    	  if(map.containsKey(ch)){
+    		  System.out.println("Duplicate found!!!");
+    		  break;
+    	  }
+    	  map.put(ch, 1);
     }
 	
+    
+	
 }
+  
+ 
+  
   
 }
 
