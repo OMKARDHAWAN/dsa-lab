@@ -27,26 +27,54 @@ public class TestString {
   }
   
   public static void main(String[] args) {
-//      hashmap
-//	
-	String word = "john";
-	
-	HashMap<Character , Integer> map = new HashMap<>();
-	
-    for(Character ch : word.toCharArray() ) {
-    	  if(map.containsKey(ch)){
-    		  System.out.println("Duplicate found!!!");
-    		  break;
-    	  }
-    	  map.put(ch, 1);
-    }
-	
-    
-	
-}
+
+	  String Word = "JohnTheDon";
+	  int length = Word.length();
+//	  for(int i = Word.length() - 1 ; i >= 0 ; i--) {
+//		  System.out.print(Word.charAt(i)); 
+//	  }
+//	  
+	  
+	  //using stringbuilder;
+	  
+	  StringBuilder str = new StringBuilder(Word);
+	  
+	  System.out.print(str.reverse());
+	  
+   }
+  
+ public static boolean checkAngrom(String s , String t){
+	 
+	 if(s.length() != t.length()) return false;
+	 
+	 
+	 HashMap<Character, Integer> map = new HashMap<>();
+	 
+	 for(char ch : s.toCharArray()) {
+		 map.put(ch, map.getOrDefault(ch,0) + 1 );
+	 }
+	 
+	 
+	 
+	 for(char ch : t.toCharArray()){
+		 if(!map.containsKey(ch)) return false;
+		 
+		 map.put(ch, map.get(ch) - 1);
+	  
+		 if(map.get(ch) == 0){
+			 map.remove(ch);
+		 }
+		 
+	 }
+	 
+	 
+	 
+	 
+	 return map.isEmpty();
+ }
   
  
-  
+ 
   
 }
 
